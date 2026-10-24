@@ -1,43 +1,63 @@
-# Forest Fire Prediction Dashboard (fixed paths)
+# 🔥 Forest Fire Prediction and Risk Mapping System
 
-## Folder structure
-- `data/fires.csv`: fire detection dataset
-- `model/fire_model.pkl`: saved model (included if present in the original project)
-- `model/backend/main.py`: FastAPI backend
-- `model/backend/train_model.py`: model training script
-- `frontend/`: React + Vite UI
+An AI/ML-based web application that visualizes forest fire observations and provides fire-risk classifications through an interactive dashboard and map.
 
-## Run the backend (Windows PowerShell)
+## 🚀 Features
 
-Open VS Code in the `python_project` folder, then open a terminal:
+* 🗺️ **Fire Hotspot Mapping:** Visualizes observed fire locations on an interactive map.
+* 🤖 **Machine Learning:** Uses a Random Forest classifier for fire-risk classification.
+* 📊 **Interactive Dashboard:** Displays fire-related data and analytics.
+* 🌦️ **Weather Integration:** Includes an API endpoint for weather-related information.
+* ⚡ **REST API:** Uses FastAPI to connect the frontend and backend.
+
+## 🛠️ Tech Stack
+
+* **Frontend:** React, Vite
+* **Backend:** Python, FastAPI
+* **Machine Learning:** Scikit-learn, Random Forest
+* **Data Processing:** Pandas, NumPy
+* **Model Storage:** Joblib
+
+## 📂 Project Structure
+
+```text
+Forest-Fire-Prediction/
+├── data/
+│   └── fires.csv
+├── frontend/
+├── model/
+│   ├── backend/
+│   │   ├── main.py
+│   │   └── train_model.py
+│   └── fire_model.pkl
+├── .gitignore
+└── README.md
+```
+
+## ⚙️ Installation and Setup
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/chitturitarunkumar/Forest-Fire-Prediction.git
+cd Forest-Fire-Prediction
+```
+
+### 2. Start the backend
 
 ```powershell
 cd model/backend
+py -m venv venv
 .\venv\Scripts\Activate.ps1
+pip install fastapi uvicorn joblib numpy pandas requests scikit-learn
 python -m uvicorn main:app --reload
 ```
 
-If there is no `venv` folder in the extracted copy, create one and install dependencies:
+Backend: `http://127.0.0.1:8000`
 
-```powershell
-py -m venv venv
-.\venv\Scripts\Activate.ps1
-python -m pip install fastapi uvicorn joblib numpy pandas requests scikit-learn
-```
+API documentation: `http://127.0.0.1:8000/docs`
 
-Backend test pages:
-- `http://127.0.0.1:8000/docs`
-- `http://127.0.0.1:8000/api/dashboard`
-- `http://127.0.0.1:8000/api/hotspots`
-- `http://127.0.0.1:8000/api/ml_prediction`
-
-If the saved model file is missing, train it from the backend folder:
-
-```powershell
-python train_model.py
-```
-
-## Run the frontend
+### 3. Start the frontend
 
 Open a second terminal:
 
@@ -47,9 +67,23 @@ npm install
 npm run dev
 ```
 
-Open the local URL Vite prints (normally `http://localhost:5173`).
+Open the local URL displayed by Vite, usually `http://localhost:5173`.
 
-Keep both terminals running.
+## 🤖 Machine Learning
 
-## Important model note
-The current training labels are generated from brightness thresholds. The resulting model classifies risk using those labels; it is not a validated forecast of future fire spread. The map now plots observed coordinates from the CSV instead of drawing fabricated predicted coordinates.
+The project uses a Random Forest classifier trained with fire-related measurements, including brightness, brightness temperature, and fire radiative power (FRP).
+
+**Note:** Current training labels are derived from brightness thresholds. The model demonstrates risk classification and is not a validated forecast of future fire occurrence or spread.
+
+## 🔮 Future Improvements
+
+* Integrate updated satellite observations.
+* Incorporate weather data into risk analysis.
+* Improve model validation and prediction accuracy.
+* Add historical fire analysis and advanced map filters.
+
+## 👨‍💻 Author
+
+**Tarun Kumar**
+
+GitHub: https://github.com/chitturitarunkumar
